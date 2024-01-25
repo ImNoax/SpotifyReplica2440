@@ -1,46 +1,29 @@
-# TP5
+# Spotify Clone
+Projet complété dans le cadre du cours **LOG2440** .
+Ce projet est un clone de Spotify, développé en utilisant les technologies full stack. L'application web comprend une interface utilisateur construite avec ReactJS pour le côté client, tandis que le côté serveur est basé sur NodeJS/Express, avec une base de données MongoDB assurant la persistance des données.
 
-Le but de ce travail pratique est de vous familiariser avec le développement d'une application web full stack utilisant une base de données pour assurer la persistance des données. Pour ce faire, vous utiliserez la librairie React pour le côté client et vous vous connecterez à une base de données MongoDB à partir d'un environnement NodeJS/Express pour le côté serveur.
+## Structure du Projet
+Le code source est organisé en deux applications distinctes : une application ReactJS (site-web) et une application NodeJS/Express (server). L'application React est composée de différentes pages et composants situés dans les répertoires components et pages. Les fichiers statiques se trouvent dans le répertoire `/public`, et le point d'entrée est `index.jsx`.
 
-## Structure du projet
+Le serveur est composé de contrôleurs, de services, et de données par défaut, organisés respectivement dans les répertoires `server/controllers`, `server/services`, et `server/data`. Le fichier `server.js` est le point d'entrée du serveur.
 
-Pour ce travail pratique, le code source contient deux applications distinctes, soit une application ReactJS (répertoire `site-web`) ainsi qu'une application NodeJS/Express (répertoire `server`). L'application React est constituée de composantes qui se retrouvent dans les répertoires `components` et `pages`. Les fichiers statiques tels que la page HTML de base se trouve dans `/public`. Au lancement de l'application, c'est le fichier `index.jsx` qui sera exécuté.
+## Configuration de la Base de Données
+Une instance MongoDB doit être configurée pour assurer la persistance des données. Utilisez le service Cloud Atlas pour héberger gratuitement une instance de 512 MB. Suivez le guide de configuration disponible sur le GitHub du cours pour configurer votre instance avec Cloud Atlas.
 
-Le serveur, pour sa part, comprend des contrôleurs, des services et des données par défaut que vous pourrez retrouver dans `server/controllers`, `server/services` et `server/data`. C'est le fichier `server.js` qui sera exécuté au lancement du serveur.
+## Installation des Librairies Nécessaires
+Pour installer les dépendances du projet, assurez-vous d'avoir NodeJS et npm installés sur votre machine. Une fois installés, exécutez la commande npm ci à la racine de chaque application (`/site-web` et `/server`) pour installer les dépendances définies dans package-lock.json.
 
-## Configuration de la base de données
+## Déploiement Local
+Pendant le développement, déployez localement l'application ReactJS et le serveur avec la commande npm start dans chacun des répertoires. L'application React sera accessible à l'adresse `localhost:5010`, et le serveur écoutera sur le port 5020.
 
-Vous devez configurer une instance MongoDB pour la persistance de vos données. Vous devez utiliser le service [Cloud Atlas](https://www.mongodb.com/cloud/atlas) qui permet d'héberger des instances d'une taille de 512 MB gratuitement.
+## Exécution des Tests
+Des tests unitaires pour le serveur sont disponibles dans le répertoire `server/tests`. Utilisez la commande npm test pour exécuter les tests automatisés. Assurez-vous de ne pas vous connecter à votre instance MongoDB en mode production pendant les tests.
 
-Vous devez configurer votre instance avant de pouvoir effectuer le travail demandé. Un guide pour la configuration d'instances MongoDB avec Cloud Atlas est disponible sur le projet [GitHub du cours](https://github.com/LOG2440/Cours-11-MongoDB/blob/master/README.MD) de l'exemple sur MongoDB présenté en classe.
+## Liste de Chansons
+Les fichiers des chansons initiales sont situés dans `assets/media`. Vous pouvez ajouter des chansons supplémentaires en mettant à jour le fichier `songs.json` dans le répertoire data du serveur.
 
-## Installation des librairies nécessaires
-
-Pour pouvoir installer les librairies nécessaires pour le TP, vous aurez besoin de l'environnement d'exécution NodeJS et le gestionnaire de paquet npm. Vous pouvez les installer sur votre machine à partir du [lien suivant](https://nodejs.org/en/download/). On vous recommande d'installer la version _LTS_.
-
-Pour installer les dépendances nécessaires, lancez la commande `npm ci` dans la racine de chaque application (et donc deux fois au total). Ceci installera toutes les librairies définies dans le fichier `package-lock.json`. Vous pouvez par la suite utiliser les libraires de test (pour le serveur) et les scripts définis dans le même fichier.
-
-## Déploiement local
-
-Lors du développement, vous pouvez faire un déploiement local de votre application ReactJS et de votre serveur dynamique avec la commande `npm start`. Notez bien qu'il faut exécuter la commande à la racine de chaque application (dans `/site-web` et `/server`) dans deux consoles distinctes afin que les deux fonctionnent en parallèle.
-
-L'application React sera lancée à l'adresse `localhost:5010` (ou `<votre-adresse IP>:5010`) et vous pourrez donc visualiser votre site web à cette même adresse. Le serveur sera déployé à l'adresse `localhost:5020` et commencera à écouter le port 5020.
-
-## Exécution des tests
-
-Le code source du serveur est accompagné d'une série de tests qui permettent de vérifier les interactions entre votre serveur et une instance MongoDB. Le code source des tests est disponible dans le répertoire `server/tests`.
-
-Les tests unitaires utilisent la librairie _Jest_ que vous avez utilisée tout au long de la session. La librairie _MongoMemoryServer_ est utilisée pour remplacer une vraie instance de MongoDB par une instance _mocked_ pour les tests. Il est très important de se connecter à une base de données locale et contrôlée et non à votre instance MongoDB déployée en mode **production** pendant vos tests.
-
-Vous êtes fortement encouragés de consulter les tests fournis. Ils vous aideront à mieux comprendre le travail à faire et le bon comportement du serveur.
-
-Vous pouvez exécuter les tests unitaires automatisés avec la commande `npm test`. Ceci exécutera les tests et produira un rapport dans votre terminal.
-
-Quelques tests sont fournis pour votre site web dans le cadre de ce travail pratique. Les fonctions non testées dans `CreatePlaylist.jsx` vous sont déjà fournies et vous pouvez assumer qu'elles sont bien implémentées. Nous vous recommandons également de tester manuellement les différentes fonctionnalités pour vous assurer de leur bon fonctionnement et vérifier que chaque élément UI de votre page web se situe au bon endroit et est inchangé depuis le dernier travail pratique.
-
-## Liste de chansons
-
-Les fichiers des chansons initiales sont disponibles dans le répertoire `assets/media`. Les chansons sont libres de droits et obtenues du site [pixabay](https://pixabay.com/music/). Vous pouvez ajouter des chansons supplémentaires à votre remise si vous voulez en vous assurant de mettre à jour l'information des chansons dans le fichier `songs.json` dans le répertoire `data` de votre serveur.
+## Corrections
+Le projet a été évalué sur différentes exigences, notamment l'implémentation des services du serveur, des composants de pages React, d'autres composants React, la structure du code, et la qualité du code. Consultez le tableau de correction pour plus de détails.
 
 # Correction
 
